@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile for teachers, admins, and parents",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["teacher", "admin", "parent"] }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "AttendanceRecord": {
+      "title": "AttendanceRecord",
+      "description": "Daily attendance roll call for a school class section",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string" },
+        "section": { "type": "string" },
+        "markedByUid": { "type": "string" },
+        "presentCount": { "type": "number" },
+        "absentCount": { "type": "number" }
+      },
+      "required": ["date", "section", "markedByUid"]
+    },
+    "MealFeedback": {
+      "title": "MealFeedback",
+      "description": "Inspection report evaluating taste and hygiene",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string" },
+        "evaluatorRole": { "type": "string" },
+        "tasteRating": { "type": "number" },
+        "hygieneRating": { "type": "number" },
+        "submittedByUid": { "type": "string" }
+      },
+      "required": ["date", "evaluatorRole", "submittedByUid"]
+    },
+    "MealPhoto": {
+      "title": "MealPhoto",
+      "description": "Photographic register of daily meals snapped by kitchen staff",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string" },
+        "title": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "uploadedByUid": { "type": "string" }
+      },
+      "required": ["date", "imageUrl", "title", "uploadedByUid"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles"
+    },
+    "/attendance_records/{recordId}": {
+      "schema": "AttendanceRecord",
+      "description": "Attendance records"
+    },
+    "/meal_feedback/{feedbackId}": {
+      "schema": "MealFeedback",
+      "description": "Meal feedback"
+    },
+    "/meal_photos/{photoId}": {
+      "schema": "MealPhoto",
+      "description": "Meal photos"
+    }
+  }
+}

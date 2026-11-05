@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body, input, button, select, textarea {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Kannada', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Malayalam', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* YuvaPoshan Design Tokens (Light Theme) */
+    --color-bg-canvas: #f8fafc;
+    --color-bg-surface: rgba(255, 255, 255, 0.78);
+    --color-bg-surface-elevated: rgba(255, 255, 255, 0.92);
+    --color-border-subtle: rgba(15, 23, 42, 0.08);
+    --color-border-glass: rgba(255, 255, 255, 0.65);
+    --color-shadow-glass: 0 10px 30px -10px rgba(15, 76, 92, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+
+    /* Text */
+    --color-text-primary: #0f172a;
+    --color-text-secondary: #475569;
+    --color-text-muted: #64748b;
+
+    /* Primary Teal-to-Indigo Brand Axis */
+    --color-brand-teal: #0d9488;
+    --color-brand-teal-light: #ccfbf1;
+    --color-brand-indigo: #4338ca;
+    --color-brand-indigo-light: #e0e7ff;
+    
+    /* Semantic Status (WCAG 2.1 AA calibrated) */
+    --color-status-present: #059669;
+    --color-status-present-bg: rgba(5, 150, 105, 0.12);
+    --color-status-absent: #e11d48;
+    --color-status-absent-bg: rgba(225, 29, 72, 0.12);
+    --color-status-late: #d97706;
+    --color-status-late-bg: rgba(217, 119, 6, 0.14);
+    --color-status-excused: #6366f1;
+    --color-status-excused-bg: rgba(99, 102, 241, 0.12);
+
+    /* Orb Gradients */
+    --orb-teal: rgba(45, 212, 191, 0.22);
+    --orb-indigo: rgba(99, 102, 241, 0.18);
+    --orb-amber: rgba(251, 191, 36, 0.12);
+
+    /* Motion & Geometry */
+    --radius-card: 20px;
+    --radius-sm: 10px;
+    --radius-pill: 9999px;
+    --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-smooth: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark {
+    /* YuvaPoshan Design Tokens (Dark Theme) */
+    --color-bg-canvas: #090d16;
+    --color-bg-surface: rgba(15, 23, 42, 0.72);
+    --color-bg-surface-elevated: rgba(30, 41, 59, 0.85);
+    --color-border-subtle: rgba(255, 255, 255, 0.10);
+    --color-border-glass: rgba(255, 255, 255, 0.14);
+    --color-shadow-glass: 0 12px 36px -10px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+
+    /* Text */
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94a3b8;
+
+    /* Primary Teal-to-Indigo Brand Axis */
+    --color-brand-teal: #14b8a6;
+    --color-brand-teal-light: rgba(20, 184, 166, 0.2);
+    --color-brand-indigo: #818cf8;
+    --color-brand-indigo-light: rgba(129, 140, 248, 0.2);
+
+    /* Semantic Status */
+    --color-status-present: #10b981;
+    --color-status-present-bg: rgba(16, 185, 129, 0.18);
+    --color-status-absent: #f43f5e;
+    --color-status-absent-bg: rgba(244, 63, 94, 0.18);
+    --color-status-late: #fbbf24;
+    --color-status-late-bg: rgba(251, 191, 36, 0.18);
+    --color-status-excused: #a5b4fc;
+    --color-status-excused-bg: rgba(165, 180, 252, 0.18);
+
+    /* Orb Gradients */
+    --orb-teal: rgba(20, 184, 166, 0.15);
+    --orb-indigo: rgba(99, 102, 241, 0.18);
+    --orb-amber: rgba(245, 158, 11, 0.08);
+  }
+}
+
+/* Glassmorphism Surface Utilities */
+.glass-panel {
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border-glass);
+  box-shadow: var(--color-shadow-glass);
+  border-radius: var(--radius-card);
+}
+
+.glass-panel-elevated {
+  background: var(--color-bg-surface-elevated);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-border-glass);
+  box-shadow: var(--color-shadow-glass);
+  border-radius: var(--radius-card);
+}
+
+.glass-subtle {
+  background: var(--color-bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+/* Slow-moving organic ambient gradient orbs */
+.bg-ambient-canvas {
+  background-color: var(--color-bg-canvas);
+  background-image: 
+    radial-gradient(at 10% 10%, var(--orb-teal) 0px, transparent 50%),
+    radial-gradient(at 90% 15%, var(--orb-indigo) 0px, transparent 50%),
+    radial-gradient(at 50% 85%, var(--orb-amber) 0px, transparent 50%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+/* Accessible focus ring */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--color-brand-teal);
+  outline-offset: 2px;
+}
+
+/* Tabular figures for scannable data alignment */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}

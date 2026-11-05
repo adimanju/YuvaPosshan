@@ -1,0 +1,6 @@
+{
+  "name": "YuvaPoshan",
+  "description": "Calm, trustworthy student attendance, school meal nutrition, and growth record-keeping platform for South Indian schools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
